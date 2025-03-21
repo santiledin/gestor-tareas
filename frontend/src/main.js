@@ -3,7 +3,6 @@ import { PiniaVuePlugin } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import pinia from './pinia'
-import './assets/main.css'
 
 Vue.use(PiniaVuePlugin)
 
