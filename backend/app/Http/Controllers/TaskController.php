@@ -15,8 +15,7 @@ class TaskController extends Controller
         $tasks = Task::where('user_id', Auth::id())->get();
         return response()->json($tasks);
     }
-
-    // Crear una nueva tarea
+    
     public function store(TaskRequest $request)
     {
         $validated = $request->validated();
@@ -65,40 +64,5 @@ class TaskController extends Controller
         $task->delete();
 
         return response()->json(['message' => 'Tarea eliminada con éxito']);
-    }
-
-    public function addComment(Request $request, $taskId)
-    {
-        $validated = $request->validate([
-            'comment' => 'required|string',
-        ]);
-
-        $task = Task::findOrFail($taskId);
-
-        if ($task->user_id !== Auth::id()) {
-            return response()->json(['message' => 'No autorizado'], 403);
-        }
-
-        $comment = Comment::create([
-            'task_id' => $taskId,
-            'user_id' => Auth::id(),
-            'comment' => $validated['comment'],
-        ]);
-
-        return response()->json($comment, 201);
-    }
-
-    public function toggleStatus($id)
-    {
-        $task = Task::findOrFail($id);
-
-        if ($task->user_id !== Auth::id()) {
-            return response()->json(['message' => 'No autorizado'], 403);
-        }
-
-        $task->status = $task->status === 'pending' ? 'completed' : 'pending';
-        $task->save();
-
-        return response()->json($task);
     }
 }
