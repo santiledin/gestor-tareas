@@ -78,7 +78,7 @@ La aplicación cliente desarrollada en Vue 2 incluye:
    ```
 
 3. **Configurar la URL de la API**:
-   - Copiar la URL que proporciona la consola al ejecutar `npm run dev` en el backend
+   - Copiar la URL que proporciona la consola al ejecutar `composer run dev` en el backend
    - Pegar esta URL en `frontend/src/config/api.js` en la constante `API_URL`
    ```javascript
    // Ejemplo en frontend/src/config/api.js
